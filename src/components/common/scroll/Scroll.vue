@@ -14,7 +14,7 @@
     props: {
       probeType: {
         type: Number,
-        default: 3
+        default: 0
       },
       click: {
         type: Boolean,
@@ -22,7 +22,7 @@
       },
       pullUpLoad: {
         type: Boolean,
-        default:false
+        default: false
       },
       data: {
         type: Array,
@@ -41,11 +41,7 @@
     		return this.scroll.y
       }
     },
-    created() {
-
-    },
     mounted() {
-
       setTimeout(this._initScroll, 20)
     },
     methods: {
@@ -56,7 +52,7 @@
           click: this.click,
           pullUpLoad: this.pullUpLoad
         })
-        this.scroll.scrollerHeiget = 99999999999
+
         // 2.事件滚动
         if (this.probeType === 2 || this.probeType === 3) {
           this.scroll.on('scroll', position => {
@@ -68,7 +64,7 @@
         // 3.上拉加载
         if (this.pullUpLoad) {
           this.scroll.on('pullingUp', () => {
-            console.log('上拉加载更多');
+            // console.log('上拉加载更多');
             this.$emit('pullingUp')
           })
         }
