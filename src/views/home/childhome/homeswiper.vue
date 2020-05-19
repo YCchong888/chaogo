@@ -2,7 +2,7 @@
   <swiper>
     <SwiperItem v-for='item in banners' >
       <a href="item.link">
-        <img :src="item.image" />
+        <img :src="item.image" @load="imgload" />
       </a>
     </Swiperitem>
   </swiper>
@@ -16,6 +16,21 @@
     components:{
       Swiper,
       SwiperItem
+    },
+    data(){
+      return{
+        isload : false
+      }
+    },
+    methods:{
+      imgload(){
+        if(!this.isload){
+          console.log('图片加载')
+          this.$emit('swiperload')
+          this.isload = true
+        }
+
+      }
     },
     props:{
       banners:{
